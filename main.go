@@ -15,7 +15,6 @@ import (
 )
 
 func main() {
-	fmt.Println("Entrou")
 	wac, err := whatsapp.NewConn(5 * time.Second)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error creating connection: %v\n", err)
@@ -29,12 +28,10 @@ func main() {
 	}
 
 	// <-time.After(3 * time.Second)
-	fmt.Println("Passou")
-
-	mensagemBytes, _ := ioutil.ReadFile("./res/message.txt")
+	mensagemBytes, _ := ioutil.ReadFile("./input/message.txt")
 	mensagem := string(mensagemBytes)
 
-	contactsFile, _ := os.Open("./res/contacts.txt")
+	contactsFile, _ := os.Open("./input/contacts.txt")
 	defer contactsFile.Close()
 	reader := csv.NewReader(contactsFile)
 
