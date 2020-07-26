@@ -47,6 +47,7 @@ func main() {
 
 		// get float value
 		contactNumber := rec[0]
+		contactNumber = fixPhoneNumber(contactNumber)
 		sendMensage(wac, contactNumber, mensagem)
 	}
 }
@@ -149,4 +150,19 @@ func processCSV(rc io.Reader) (ch chan []string) {
 		}
 	}()
 	return
+}
+
+func fixPhoneNumber(number string) string {
+	size := len(number)
+	result := ""
+
+	if size == 9 {
+		result = "5521" + number
+	}
+
+	if size == 11 {
+		result = "55" + number
+	}
+
+	return result
 }
