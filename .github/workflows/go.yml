@@ -121,6 +121,6 @@ jobs:
           # Version to create
           version: ${{ github.ref }}
           # json string array of assets paths to upload to the release. E.G. '[ "win-x64.zip", "linux-x24.zip" ]'
-          assets: '[ ${{ env.FILENAME }} ]'
+          assets: '[ "${{ env.FILENAME }}" ]'
           # bool value to overwrite assets
           overwrite: true
