@@ -123,6 +123,6 @@ jobs:
           # Version to create
           version: 'latest'
           # json string array of assets paths to upload to the release. E.G. '[ "win-x64.zip", "linux-x24.zip" ]'
-          assets: '[ ${{ $FILENAME }} ]'
+          assets: '[ ${{ env.FILENAME }} ]'
           # bool value to overwrite assets
           overwrite: true
