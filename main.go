@@ -28,10 +28,10 @@ func main() {
 	}
 
 	// <-time.After(3 * time.Second)
-	mensagemBytes, _ := ioutil.ReadFile("./input/message.txt")
+	mensagemBytes, _ := ioutil.ReadFile("./message.txt")
 	mensagem := string(mensagemBytes)
 
-	contactsFile, _ := os.Open("./input/contacts.txt")
+	contactsFile, _ := os.Open("./contacts.txt")
 	defer contactsFile.Close()
 	reader := csv.NewReader(contactsFile)
 
