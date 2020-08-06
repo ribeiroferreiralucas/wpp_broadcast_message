@@ -119,7 +119,7 @@ jobs:
           # secrets.GITHUB_TOKEN, or a token with read/write access to the repo
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # Version to create
-          version: 'latest'
+          version: ${{ github.ref }}
           # json string array of assets paths to upload to the release. E.G. '[ "win-x64.zip", "linux-x24.zip" ]'
           assets: '[ ${{ env.FILENAME }} ]'
           # bool value to overwrite assets
