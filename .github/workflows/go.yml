@@ -66,6 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       FILENAME: wpp_broadcast_message_windows86x.exe
+      ZIPNAME: wpp_broadcast_message_windows86x.zip
       GOOS: windows
       GOARCH: 386
     steps:
@@ -119,6 +120,7 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       FILENAME: wpp_broadcast_message_linux_amd64
+      ZIPNAME: wpp_broadcast_message_linux_amd64.zip
       GOOS: linux
       GOARCH: amd64
     steps:
@@ -173,6 +175,7 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       FILENAME: wpp_broadcast_message_linux_386
+      ZIPNAME: wpp_broadcast_message_linux_386.zip
       GOOS: linux
       GOARCH: 386
     steps:
@@ -228,6 +231,7 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       FILENAME: wpp_broadcast_message_linux_arm
+      ZIPNAME: wpp_broadcast_message_linux_arm.zip
       GOOS: linux
       GOARCH: arm
     steps:
