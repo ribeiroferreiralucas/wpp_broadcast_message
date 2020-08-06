@@ -1,0 +1,85 @@
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+ build_windows64:
+    name: Build Windows 64
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Get dependencies
+      run: |
+        go get -v -t -d ./...
+        if [ -f Gopkg.toml ]; then
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+            dep ensure
+        fi
+
+    - name: Build
+      run: |
+        env GOOS=windows GOARCH=amd64 go build -o wpp_broadcast_message_windows64x.exe ./main.go
+
+    - name: Tag and Release and Upload
+      uses: jasondavis303/tag-and-release-and-upload@v1.2.0
+      with:
+        # secrets.GITHUB_TOKEN, or a token with read/write access to the repo
+        github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+        # Version to create
+        version: 'latest'
+        # json string array of assets paths to upload to the release. E.G. '[ "win-x64.zip", "linux-x24.zip" ]'
+        assets: '[ "wpp_broadcast_message_windows64x.exe" ]'
+        # bool value to overwrite assets
+        overwrite: true
+
+ build_windows86:
+    name: Build Windows 86
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Get dependencies
+      run: |
+        go get -v -t -d ./...
+        if [ -f Gopkg.toml ]; then
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+            dep ensure
+        fi
+
+    - name: Build
+      run: |
+	      env GOOS=windows GOARCH=386 go build -o bin/wpp_broadcast_message_windows86x.exe ./main.go
+
+    - name: Tag and Release and Upload
+      uses: jasondavis303/tag-and-release-and-upload@v1.2.0
+      with:
+        # secrets.GITHUB_TOKEN, or a token with read/write access to the repo
+        github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+        # Version to create
+        version: 'latest'
+        # json string array of assets paths to upload to the release. E.G. '[ "win-x64.zip", "linux-x24.zip" ]'
+        assets: '[ "wpp_broadcast_message_windows86x.exe" ]'
+        # bool value to overwrite assets
+        overwrite: true
