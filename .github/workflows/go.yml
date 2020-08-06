@@ -94,9 +94,9 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # Files or directories to zip
-          files: input/ $FILENAME
+          files: input/ ${{ env.FILENAME }}
           # Name of output zip file
-          dest: $ZIPNAME
+          dest: ${{ env.ZIPNAME }}
       
       - name: Get tag
         id: tag
@@ -148,9 +148,9 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # Files or directories to zip
-          files: input/ $FILENAME
+          files: input/ ${{ env.FILENAME }}
           # Name of output zip file
-          dest: $ZIPNAME
+          dest: ${{ env.ZIPNAME }}
       
       - name: Get tag
         id: tag
@@ -203,9 +203,9 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # Files or directories to zip
-          files: input/ $FILENAME
+          files: input/ ${{ env.FILENAME }}
           # Name of output zip file
-          dest: $ZIPNAME
+          dest: ${{ env.ZIPNAME }}
       
       - name: Get tag
         id: tag
@@ -259,9 +259,9 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # Files or directories to zip
-          files: input/ $FILENAME
+          files: input/ ${{ env.FILENAME }}
           # Name of output zip file
-          dest: $ZIPNAME
+          dest: ${{ env.ZIPNAME }}
       
       - name: Get tag
         id: tag
