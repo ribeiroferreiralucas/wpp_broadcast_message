@@ -31,8 +31,7 @@ jobs:
         fi
 
     - name: Build
-      run: |
-        env GOOS=windows GOARCH=amd64 go build -o wpp_broadcast_message_windows64x.exe ./main.go
+      run: env GOOS=windows GOARCH=amd64 go build -o wpp_broadcast_message_windows64x.exe ./main.go
 
     - name: Tag and Release and Upload
       uses: jasondavis303/tag-and-release-and-upload@v1.2.0
@@ -69,8 +68,7 @@ jobs:
         fi
 
     - name: Build
-      run: |
-	      env GOOS=windows GOARCH=386 go build -o bin/wpp_broadcast_message_windows86x.exe ./main.go
+      run: env GOOS=windows GOARCH=386 go build -o bin/wpp_broadcast_message_windows86x.exe ./main.go
 
     - name: Tag and Release and Upload
       uses: jasondavis303/tag-and-release-and-upload@v1.2.0
