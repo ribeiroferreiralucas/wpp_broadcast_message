@@ -8,8 +8,8 @@
 [Página com binários](https://github.com/ribeiroferreiralucas/wpp_broadcast_message/releases). Escolha a versão compatível com sistema operacional.
 
 - Extraia o arquivo onde desejar.
- - Altere o arquivo message.txt dentro da pasta input e escreva a mensagem que deseja enviar.
- - Altere o arquivo contacts.txt dentro da pasta input e escreva cada telefone que deseja enviar mensagem.
+ - Altere o arquivo message.txt e escreva a mensagem que deseja enviar.
+ - Altere o arquivo contacts.txt e escreva cada telefone que deseja enviar mensagem.
 
 Deve manter 1 telefone por linha. O telefone de ter o formato: [Código de país][DDD][Número]
 
