@@ -39,7 +39,7 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # Files or directories to zip
-          files: input/ ${{ env.FILENAME }}
+          files: contacts.txt message.txt ${{ env.FILENAME }}
           # Name of output zip file
           dest: ${{ env.ZIPNAME }}
 
@@ -94,7 +94,7 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # Files or directories to zip
-          files: input/ ${{ env.FILENAME }}
+          files: contacts.txt message.txt ${{ env.FILENAME }}
           # Name of output zip file
           dest: ${{ env.ZIPNAME }}
       
@@ -148,7 +148,7 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # Files or directories to zip
-          files: input/ ${{ env.FILENAME }}
+          files: contacts.txt message.txt ${{ env.FILENAME }}
           # Name of output zip file
           dest: ${{ env.ZIPNAME }}
       
@@ -203,7 +203,7 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # Files or directories to zip
-          files: input/ ${{ env.FILENAME }}
+          files: contacts.txt message.txt ${{ env.FILENAME }}
           # Name of output zip file
           dest: ${{ env.ZIPNAME }}
       
@@ -259,7 +259,7 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # Files or directories to zip
-          files: input/ ${{ env.FILENAME }}
+          files: contacts.txt message.txt ${{ env.FILENAME }}
           # Name of output zip file
           dest: ${{ env.ZIPNAME }}
       

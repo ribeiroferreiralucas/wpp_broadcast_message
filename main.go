@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	qrcodeTerminal "github.com/Baozisoftware/qrcode-terminal-go"
@@ -15,7 +16,7 @@ import (
 )
 
 func main() {
-	wac, err := whatsapp.NewConn(5 * time.Second)
+	wac, err := whatsapp.NewConn(10 * time.Second)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error creating connection: %v\n", err)
 		return
@@ -48,7 +49,29 @@ func main() {
 		// get float value
 		contactNumber := rec[0]
 		contactNumber = fixPhoneNumber(contactNumber)
-		sendMensage(wac, contactNumber, mensagem)
+
+		retyingCount := 0
+
+		for {
+
+			err = sendMensage(wac, contactNumber, mensagem)
+			if err == nil {
+				retyingCount = 0
+				break
+			}
+
+			if retyingCount < 4 {
+				retyingCount++
+				fmt.Fprintf(os.Stderr, "error sending message to : %v | Retrying %d\n", contactNumber, retyingCount)
+				continue
+			} else {
+				fmt.Fprintf(os.Stderr, "error sending message to : %v | Already retried %d times. Exiting program\n", err, retyingCount)
+				os.Exit(1)
+				break
+			}
+
+		}
+
 	}
 }
 
@@ -62,8 +85,8 @@ func sendMensage(wac *whatsapp.Conn, number, text string) error {
 	}
 	_, err := wac.Send(msg)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error sending message: %v", err)
-		os.Exit(1)
+		fmt.Fprintf(os.Stderr, "error sending message: %v\n", err)
+		return err
 	} else {
 		fmt.Println("Message Sent -> Number : " + number)
 	}
@@ -161,6 +184,15 @@ func processCSV(rc io.Reader) (ch chan []string) {
 }
 
 func fixPhoneNumber(number string) string {
+	number = strings.ReplaceAll(number, " ", "")
+	number = strings.ReplaceAll(number, "-", "")
+	number = strings.ReplaceAll(number, "+", "")
+	number = strings.ReplaceAll(number, ".", "")
+	number = strings.ReplaceAll(number, "(", "")
+	number = strings.ReplaceAll(number, ")", "")
+	number = strings.ReplaceAll(number, "/", "")
+	number = strings.TrimPrefix(number, "0")
+
 	size := len(number)
 	result := number
 
